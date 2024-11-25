@@ -1,0 +1,33 @@
+train_module:
+    weight: beomi/Llama-3-Open-Ko-8B
+    model:
+        module: transformers.AutoModelForCausalLM
+    tokenizer:
+        module: transformers.AutoTokenizer
+    optimizer:
+        module: torch.optim.AdamW
+        params:
+            lr: 0.0001
+    lr_scheduler: null
+    loss_function:
+        module: torch.nn.CrossEntropyLoss
+    max_token_length: 256
+
+data_module:
+    path: jojo0217/korean_rlhf_dataset
+    batch_size: 1
+    num_workers: 2
+    split:
+        train: 0.8
+        validation: 0.1
+        test: 0.1
+
+trainer:
+    config:
+        max_epochs: 4
+        min_epochs: 1
+    callbacks:
+        - 
+    plugins:
+        - 
+    
